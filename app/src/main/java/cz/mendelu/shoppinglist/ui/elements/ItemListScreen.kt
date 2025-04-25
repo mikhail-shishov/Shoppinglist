@@ -34,10 +34,12 @@ fun ItemListScreen(
     onNavigateToAddItem: () -> Unit,
     viewModel: ShoppingViewModel = hiltViewModel()
 ) {
+    // подписка на поток товаров
     val items by viewModel.items.collectAsState()
 
     Scaffold(
         topBar = {
+            // верхняя панель с кнопкой "назад"
             TopAppBar(
                 title = { Text("Seznam položek") },
                 navigationIcon = {
@@ -48,11 +50,13 @@ fun ItemListScreen(
             )
         },
         floatingActionButton = {
+            // кнопка добавления новой позиции
             FloatingActionButton(onClick = onNavigateToAddItem) {
                 Icon(Icons.Default.Add, contentDescription = "Add Item")
             }
         }
     ) { paddingValues ->
+        // список всех товаров
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
@@ -66,12 +70,14 @@ fun ItemListScreen(
                         .padding(vertical = 8.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
+                    // название товара
                     Text(
                         text = item.name,
                         fontWeight = FontWeight.Bold,
                         fontSize = 16.sp,
                         modifier = Modifier.weight(1f)
                     )
+                    // количество
                     Text(
                         text = item.quantity.toString(),
                         fontSize = 16.sp

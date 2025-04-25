@@ -34,11 +34,13 @@ fun AddItemScreen(
     onNavigateBack: () -> Unit,
     viewModel: ShoppingViewModel = hiltViewModel()
 ) {
+    // переменные состояния для названия и количества
     var itemName by remember { mutableStateOf("") }
     var itemQuantity by remember { mutableStateOf("") }
 
     Scaffold(
         topBar = {
+            // верхняя панель с кнопкой "назад"
             TopAppBar(
                 title = { Text("Přidat položku") },
                 navigationIcon = {
@@ -56,6 +58,7 @@ fun AddItemScreen(
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            // поле ввода названия товара
             OutlinedTextField(
                 value = itemName,
                 onValueChange = { itemName = it },
@@ -65,6 +68,7 @@ fun AddItemScreen(
 
             Spacer(modifier = Modifier.height(16.dp))
 
+            // поле ввода количества (только числа)
             OutlinedTextField(
                 value = itemQuantity,
                 onValueChange = { itemQuantity = it },
@@ -75,6 +79,7 @@ fun AddItemScreen(
 
             Spacer(modifier = Modifier.height(24.dp))
 
+            // кнопка "сохранить", активна только если оба поля не пусты
             Button(
                 onClick = {
                     val quantity = itemQuantity.toIntOrNull() ?: 0

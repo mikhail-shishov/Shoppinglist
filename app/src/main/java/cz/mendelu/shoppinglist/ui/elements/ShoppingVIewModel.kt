@@ -16,6 +16,7 @@ class ShoppingViewModel @Inject constructor(
     private val repository: ShoppingRepository
 ) : ViewModel() {
 
+    // поток всех товаров из репозитория
     val items: StateFlow<List<ShoppingItem>> = repository.allItems
         .stateIn(
             scope = viewModelScope,
@@ -23,6 +24,7 @@ class ShoppingViewModel @Inject constructor(
             initialValue = emptyList()
         )
 
+    // добавление нового товара
     fun addItem(name: String, quantity: Int) {
         if (name.isNotBlank() && quantity > 0) {
             viewModelScope.launch {
@@ -31,6 +33,7 @@ class ShoppingViewModel @Inject constructor(
         }
     }
 
+    // удаление товара
     fun deleteItem(item: ShoppingItem) {
         viewModelScope.launch {
             repository.deleteItem(item)

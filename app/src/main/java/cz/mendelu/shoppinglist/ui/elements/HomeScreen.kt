@@ -23,6 +23,7 @@ fun HomeScreen(
 ) {
     Scaffold(
         topBar = {
+            // верхняя панель с заголовком
             TopAppBar(
                 title = { Text("Main Screen") }
             )
@@ -35,6 +36,7 @@ fun HomeScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
+            // кнопка перехода к списку товаров
             Button(
                 onClick = onNavigateToItemList
             ) {
